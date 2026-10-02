@@ -52,6 +52,56 @@
     });
   });
 
+  // Galeria: filtros
+  var shots = Array.prototype.slice.call(document.querySelectorAll(".shot"));
+  var chips = document.querySelectorAll(".chip");
+  chips.forEach(function (chip) {
+    chip.addEventListener("click", function () {
+      var filter = chip.dataset.filter;
+      chips.forEach(function (c) {
+        var active = c === chip;
+        c.classList.toggle("is-active", active);
+        c.setAttribute("aria-pressed", String(active));
+      });
+      shots.forEach(function (shot) {
+        shot.hidden = filter !== "todos" && shot.dataset.cat !== filter;
+      });
+    });
+  });
+
+  // Galeria: foto ampliada, navegando só entre as fotos visíveis
+  var box = document.querySelector(".lightbox");
+  if (box && typeof box.showModal === "function") {
+    var boxImg = box.querySelector(".lightbox__img");
+    var boxCap = box.querySelector(".lightbox__caption");
+    var current = 0;
+    var visible = function () { return shots.filter(function (s) { return !s.hidden; }); };
+    var show = function (i) {
+      var list = visible();
+      current = (i + list.length) % list.length;
+      var btn = list[current].querySelector(".shot__btn");
+      var thumb = btn.querySelector("img");
+      boxImg.src = btn.dataset.full;
+      boxImg.alt = thumb.alt;
+      boxCap.textContent = thumb.alt;
+    };
+    shots.forEach(function (shot) {
+      shot.querySelector(".shot__btn").addEventListener("click", function () {
+        show(visible().indexOf(shot));
+        box.showModal();
+      });
+    });
+    box.querySelector(".lightbox__close").addEventListener("click", function () { box.close(); });
+    box.querySelector(".lightbox__prev").addEventListener("click", function () { show(current - 1); });
+    box.querySelector(".lightbox__next").addEventListener("click", function () { show(current + 1); });
+    box.addEventListener("click", function (e) { if (e.target === box) box.close(); });
+    box.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowLeft") show(current - 1);
+      if (e.key === "ArrowRight") show(current + 1);
+    });
+    box.addEventListener("close", function () { boxImg.removeAttribute("src"); });
+  }
+
   // FAQ: um item aberto por vez
   var items = document.querySelectorAll(".qa");
   items.forEach(function (item) {

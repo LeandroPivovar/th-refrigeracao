@@ -208,6 +208,57 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 .tile__body p { color: rgba(237, 242, 247, 0.8); }
 
+/* Galeria */
+.gallery { padding: clamp(80px, 11vw, 136px) 0; }
+.gallery__head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px 40px; flex-wrap: wrap; }
+.gallery__intro { margin-top: 18px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  height: 40px; padding: 0 16px; border-radius: var(--radius);
+  background: transparent; color: var(--muted); border: 1px solid var(--line-strong);
+  font: 500 0.875rem/1 var(--font); cursor: pointer;
+  transition: color .3s var(--ease), border-color .3s var(--ease), background-color .3s var(--ease);
+}
+.chip:hover { color: var(--text); border-color: var(--text); }
+.chip.is-active { background: var(--accent); border-color: var(--accent); color: #0b1218; }
+
+/* Mosaico em colunas: aceita fotos em pé e deitadas sem cortar */
+.gallery__grid { margin-top: 48px; columns: 4 240px; column-gap: 14px; }
+.shot { break-inside: avoid; margin-bottom: 14px; }
+.shot[hidden] { display: none; }
+.shot__btn {
+  display: block; width: 100%; padding: 0; border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--surface); overflow: hidden; cursor: zoom-in; position: relative;
+}
+.shot__btn img { width: 100%; height: auto; transition: transform .8s var(--ease), opacity .4s var(--ease); }
+.shot__btn::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(13, 17, 22, 0.45), transparent 45%);
+  opacity: 0; transition: opacity .4s var(--ease);
+}
+.shot__btn:hover img { transform: scale(1.04); }
+.shot__btn:hover::after { opacity: 1; }
+
+/* Foto ampliada */
+.lightbox {
+  width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0;
+  background: rgba(8, 11, 15, 0.94); color: var(--text);
+}
+.lightbox[open] { display: grid; place-items: center; }
+.lightbox::backdrop { background: rgba(8, 11, 15, 0.94); }
+.lightbox__img {
+  max-width: min(calc(100vw - 160px), 1100px); max-height: calc(100dvh - 140px);
+  width: auto; height: auto; object-fit: contain; border-radius: var(--radius);
+}
+.lightbox__caption {
+  position: absolute; left: 50%; bottom: 24px; transform: translateX(-50%);
+  width: min(92vw, 720px); text-align: center; color: var(--muted); font-size: 0.95rem;
+}
+.lightbox .round { position: absolute; background: rgba(13, 17, 22, 0.7); }
+.lightbox__close { top: 20px; right: 20px; }
+.lightbox__prev { left: 20px; top: 50%; transform: translateY(-50%); }
+.lightbox__next { right: 20px; top: 50%; transform: translateY(-50%); }
+
 /* Depoimentos */
 .reviews { padding: clamp(80px, 11vw, 136px) 0; }
 .reviews__head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; }
@@ -353,6 +404,12 @@ ul { margin: 0; padding: 0; list-style: none; }
   .location__overlay { padding-block: 0; }
   .location__card { max-width: none; margin: -48px 0 32px; }
   .qa p { padding-right: 0; }
+  .gallery__grid { columns: 2; column-gap: 10px; margin-top: 32px; }
+  .shot { margin-bottom: 10px; }
+  .lightbox[open] { place-items: start center; padding-top: 80px; }
+  .lightbox__img { max-width: 92vw; max-height: calc(100dvh - 240px); }
+  .lightbox__prev, .lightbox__next { top: auto; bottom: 24px; transform: none; }
+  .lightbox__caption { width: calc(100vw - 150px); bottom: 24px; font-size: 0.875rem; }
   .float-chat span { display: none; }
   .float-chat { width: 52px; height: 52px; padding: 0; justify-content: center; }
 }
@@ -369,3 +426,14 @@ ul { margin: 0; padding: 0; list-style: none; }
 .info a { text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: 3px; }
 
 .info small { color: var(--muted); font-size: 0.85rem; }
+
+/* Menu com 6 links: marca em uma linha e hambúrguer até 1024px */
+.brand__name, .brand__tag { white-space: nowrap; }
+@media (max-width: 1320px) {
+  .brand__tag { display: none; }
+}
+@media (max-width: 1024px) {
+  .nav__links, .nav__cta { display: none; }
+  .nav__toggle { display: inline-flex; }
+  .nav.menu-open { background: rgba(13, 17, 22, 0.97); }
+}

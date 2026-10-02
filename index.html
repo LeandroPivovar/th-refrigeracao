@@ -55,6 +55,7 @@
       <nav class="nav__links" aria-label="Principal">
         <a href="#sobre">Sobre</a>
         <a href="#servicos">Serviços</a>
+        <a href="#galeria">Galeria</a>
         <a href="#depoimentos">Depoimentos</a>
         <a href="#localizacao">Localização</a>
         <a href="#faq">Dúvidas</a>
@@ -72,6 +73,7 @@
     <div class="nav__mobile" id="menu-mobile" hidden>
       <a href="#sobre">Sobre</a>
       <a href="#servicos">Serviços</a>
+      <a href="#galeria">Galeria</a>
       <a href="#depoimentos">Depoimentos</a>
       <a href="#localizacao">Localização</a>
       <a href="#faq">Dúvidas</a>
@@ -195,6 +197,49 @@
         </div>
       </div>
     </section>
+
+    <!-- GALERIA -->
+    <section class="gallery" id="galeria" aria-labelledby="galeria-title">
+      <div class="wrap">
+        <div class="gallery__head">
+          <div>
+            <h2 id="galeria-title" class="h2 reveal">Serviços feitos na oficina</h2>
+            <p class="body gallery__intro reveal">Fotos reais do dia a dia da TH. Toque em uma foto para ampliar.</p>
+          </div>
+          <div class="chips reveal" role="group" aria-label="Filtrar fotos">
+            <button type="button" class="chip is-active" data-filter="todos" aria-pressed="true">Todos</button>
+            <button type="button" class="chip" data-filter="ar" aria-pressed="false">Ar-condicionado</button>
+            <button type="button" class="chip" data-filter="multimidia" aria-pressed="false">Multimídia</button>
+            <button type="button" class="chip" data-filter="oficina" aria-pressed="false">Oficina</button>
+          </div>
+        </div>
+
+        <ul class="gallery__grid" role="list">
+          <li class="shot" data-cat="ar"><button type="button" class="shot__btn" data-full="assets/galeria/th-10.jpg"><img src="assets/galeria/th-10-thumb.jpg" alt="Manômetros conectados ao sistema de ar-condicionado com a frente do carro desmontada" width="360" height="640" loading="lazy"></button></li>
+          <li class="shot" data-cat="ar"><button type="button" class="shot__btn" data-full="assets/galeria/th-02.jpg"><img src="assets/galeria/th-02-thumb.jpg" alt="Técnico trabalhando no compartimento do motor de um carro branco" width="360" height="640" loading="lazy"></button></li>
+          <li class="shot" data-cat="ar"><button type="button" class="shot__btn" data-full="assets/galeria/th-15.jpg"><img src="assets/galeria/th-15-thumb.jpg" alt="SUV azul com o capô aberto e manômetros ligados ao ar-condicionado" width="480" height="640" loading="lazy"></button></li>
+          <li class="shot" data-cat="multimidia"><button type="button" class="shot__btn" data-full="assets/galeria/th-06.jpg"><img src="assets/galeria/th-06-thumb.jpg" alt="Central multimídia sendo instalada no painel de um carro" width="480" height="640" loading="lazy"></button></li>
+          <li class="shot" data-cat="ar"><button type="button" class="shot__btn" data-full="assets/galeria/th-13.jpg"><img src="assets/galeria/th-13-thumb.jpg" alt="Mangueiras de manifold ligadas ao ar-condicionado de um carro preto" width="360" height="640" loading="lazy"></button></li>
+          <li class="shot" data-cat="oficina"><button type="button" class="shot__btn" data-full="assets/galeria/th-12.jpg"><img src="assets/galeria/th-12-thumb.jpg" alt="Fachada da TH Refrigeração com uma picape branca estacionada na frente" width="480" height="640" loading="lazy"></button></li>
+          <li class="shot" data-cat="ar"><button type="button" class="shot__btn" data-full="assets/galeria/th-07.jpg"><img src="assets/galeria/th-07-thumb.jpg" alt="Carro com a frente desmontada para acesso ao sistema de ar-condicionado" width="480" height="640" loading="lazy"></button></li>
+          <li class="shot" data-cat="ar"><button type="button" class="shot__btn" data-full="assets/galeria/th-11.jpg"><img src="assets/galeria/th-11-thumb.jpg" alt="Carro branco com radiador exposto e mangueiras ligadas ao sistema" width="360" height="640" loading="lazy"></button></li>
+          <li class="shot" data-cat="multimidia"><button type="button" class="shot__btn" data-full="assets/galeria/th-08.jpg"><img src="assets/galeria/th-08-thumb.jpg" alt="Chicote de instalação de uma central multimídia" width="480" height="640" loading="lazy"></button></li>
+          <li class="shot" data-cat="ar"><button type="button" class="shot__btn" data-full="assets/galeria/th-14.jpg"><img src="assets/galeria/th-14-thumb.jpg" alt="Carro prata com o capô aberto e manômetros conectados" width="360" height="640" loading="lazy"></button></li>
+          <li class="shot" data-cat="oficina"><button type="button" class="shot__btn" data-full="assets/galeria/th-09.jpg"><img src="assets/galeria/th-09-thumb.jpg" alt="Carro prata com faróis acesos dentro da oficina" width="480" height="640" loading="lazy"></button></li>
+          <li class="shot" data-cat="multimidia"><button type="button" class="shot__btn" data-full="assets/galeria/th-03.jpg"><img src="assets/galeria/th-03-thumb.jpg" alt="Painel da porta desmontado com a fiação exposta" width="360" height="640" loading="lazy"></button></li>
+          <li class="shot" data-cat="oficina"><button type="button" class="shot__btn" data-full="assets/galeria/th-04.jpg"><img src="assets/galeria/th-04-thumb.jpg" alt="Carro preto estacionado na entrada da oficina" width="360" height="640" loading="lazy"></button></li>
+          <li class="shot" data-cat="multimidia"><button type="button" class="shot__btn" data-full="assets/galeria/th-01.jpg"><img src="assets/galeria/th-01-thumb.jpg" alt="Caixas de centrais multimídia expostas em prateleira na oficina" width="640" height="360" loading="lazy"></button></li>
+        </ul>
+      </div>
+    </section>
+
+    <dialog class="lightbox" aria-label="Foto ampliada">
+      <img class="lightbox__img" src="" alt="">
+      <p class="lightbox__caption"></p>
+      <button type="button" class="lightbox__close round" aria-label="Fechar"><i class="ph ph-x" aria-hidden="true"></i></button>
+      <button type="button" class="lightbox__prev round" aria-label="Foto anterior"><i class="ph ph-arrow-left" aria-hidden="true"></i></button>
+      <button type="button" class="lightbox__next round" aria-label="Próxima foto"><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
+    </dialog>
 
     <!-- DEPOIMENTOS -->
     <!-- Depoimentos de exemplo: substituir por avaliações reais de clientes antes de publicar. -->
